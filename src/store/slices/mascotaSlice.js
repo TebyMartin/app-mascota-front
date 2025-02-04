@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
 
@@ -64,8 +65,18 @@ export const eliminarMascota = createAsyncThunk(
   "mascotas/eliminarMascota",
   async (id, { dispatch, rejectWithValue }) => {
     try {
-      const confirmar = confirm("¿Estás seguro de eliminar este mascota?");
-      if (!confirmar) return rejectWithValue("Eliminación cancelada");
+      const { isConfirmed } = await Swal.fire({
+        title: "¿Estás seguro?",
+        text: "No podrás revertir esto",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
+      });
+
+      if (!isConfirmed) return rejectWithValue("Eliminación cancelada");
 
       const token = localStorage.getItem("token");
       if (!token) return rejectWithValue("No hay token de autenticación");
@@ -78,10 +89,10 @@ export const eliminarMascota = createAsyncThunk(
       };
 
       await axios.delete(`https://app-mascota.vercel.app/api/mascota/${id}`, config);
-      dispatch(fetchMascotas())
-      dispatch(setMensaje({ msg: "Mascota eliminado correctamente.", error: false }));
+      dispatch(fetchMascotas());
+      Swal.fire("Eliminado", "La mascota ha sido eliminada", "success");
     } catch (error) {
-      dispatch(setMensaje({ msg: error.response?.data || "Error al eliminar mascota", error: true }));
+      Swal.fire("Error", error.response?.data || "Error al eliminar mascota", "error");
       return rejectWithValue(error.response?.data || "Error al eliminar mascota");
     }
   }

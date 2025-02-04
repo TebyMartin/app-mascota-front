@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseURL, clienteUrl } from "../../App";
+import Swal from "sweetalert2";
 
 
 // Acción para obtener clientes
@@ -66,8 +67,19 @@ export const eliminarCliente = createAsyncThunk(
   "clientes/eliminarCliente",
   async (id, { dispatch, rejectWithValue }) => {
     try {
-      const confirmar = confirm("¿Estás seguro de eliminar este cliente?");
-      if (!confirmar) return rejectWithValue("Eliminación cancelada");
+      const { isConfirmed } = await Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Si eliminas este cliente se borrarán todas las mascotas asociadas a él",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#d33",
+              cancelButtonColor: "#3085d6",
+              confirmButtonText: "Sí, eliminar",
+              cancelButtonText: "Cancelar",
+            });
+      
+            if (!isConfirmed) return rejectWithValue("Eliminación cancelada");
+      
 
       const token = localStorage.getItem("token");
       if (!token) return rejectWithValue("No hay token de autenticación");
