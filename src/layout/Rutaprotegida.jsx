@@ -16,7 +16,6 @@ function RutaProtegida() {
 
   useEffect(() => {
     if (!auth.token) {
-      console.log("No hay token, autenticando usuario...");
       dispatch(autenticarUsuario());
     }
   }, [dispatch, auth?.token]);

@@ -23,7 +23,7 @@ function Clientes({ cliente }) {
     }, [mensaje, limpiarMensajeHandler]);
 
     const handleEdit = () => {
-        console.log("Se va a editar el cliente:", cliente);
+        
         setEdicion(cliente);
     };
 

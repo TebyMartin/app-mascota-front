@@ -10,7 +10,7 @@ function ListadoMascotas() {
   const { mascotas, fetchMascotas } = useMascota();
   const dispatch = useDispatch()
   const mascotasFiltradas = useSelector((state) => state.busqueda.mascotas) || [];
-  console.log("Mascotas filtradas:", mascotasFiltradas);
+ 
 
   const clientes = useSelector((state) => state.clientes.clientes) || [];
 
@@ -22,9 +22,7 @@ function ListadoMascotas() {
     fetchMascotas();
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(mascotas)
-  }, [mascotas]);
+
 
   const handleSearch = (e) => {
     e.preventDefault();

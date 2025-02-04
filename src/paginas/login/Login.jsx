@@ -41,7 +41,7 @@ export const Login = () => {
     try {
       const { data } = await axios.post(`${baseURL}${loginUrl}`, login);
       localStorage.setItem('token', data.token);
-      console.log("inicio correcto ",data)
+      
    
       dispatch(setAuth(data));
 

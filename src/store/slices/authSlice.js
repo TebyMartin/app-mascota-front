@@ -15,7 +15,6 @@ export const autenticarUsuario = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     const token = localStorage.getItem('token');
     if (!token) {
-      console.log('No hay token disponible en localStorage');
       return rejectWithValue('No hay token disponible');
     }
 
@@ -28,7 +27,6 @@ export const autenticarUsuario = createAsyncThunk(
 
     try {
       const { data } = await axios.get(`${baseURL}${perfilUrl}`, config);
-      console.log('Respuesta del backend:', data);
       return data;
     } catch (error) {
       console.log('Error en el backend:', error.response?.data?.msg);

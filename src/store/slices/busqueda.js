@@ -8,7 +8,6 @@ export const fetchMascotasByCliente = createAsyncThunk(
   async (clienteNombre, thunkAPI) => {
     const token = localStorage.getItem('token');
     if (!token) {
-      console.log('No hay token disponible en localStorage');
       return thunkAPI.rejectWithValue('No hay token disponible');
     }
 

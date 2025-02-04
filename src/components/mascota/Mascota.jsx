@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchClientes } from '../../store/slices/clienteSlice';
 
 function Mascotas({ mascota, clientes }) {
-  console.log(mascota);
   const { setEdicion, eliminarMascota, limpiarMensajeHandler, mensaje } = useMascota();
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state.clientes); 
