@@ -11,13 +11,13 @@ La app web permitirá gestionar clientes y sus respectivas mascotas, aplicando l
 
 # Pasos para usar este proyecto 
 
-1. Clonar el repositorio ``` https://github.com/TebyMartin/app-mascota.git ```
+1. Clonar el repositorio ``` https://github.com/TebyMartin/app-mascota-front.git```
 
 2. Instalar las dependencias ```npm install```
 3. Ejecutar el servidor ``` npm run dev```. 
 4. Crearse un usuario (descripción mas adelante)
 5. Iniciar sesión
-6. Tambien puede usarse el link desplegado en Vercel para probar los endpoints https://app-mascota.vercel.app/
+6. Tambien puede usarse el link desplegado en Vercel para probar los endpoints https://app-mascota-front.vercel.app/
 
 ## Estructura del Proyecto
 
@@ -90,7 +90,7 @@ Mascota:
 
 ## Despliegue en Vercel 
 ---
-Ya está disponible en VERCEL 👉 
+Ya está disponible en VERCEL 👉 https://app-mascota-front.vercel.app/
 
 
 ## Creditos
